@@ -8,6 +8,14 @@ export function getById(id: u32): Gif {
     return Gif.findById(id);
 }
 
+export function upVote(id: u32): void {
+    Gif.upVote(id);
+}
+
+export function downVote(id: u32): void {
+    Gif.downVote(id);
+}
+
 export function get(offset: u32 = 0, limit: u32 = 10): Gif[] {
     return Gif.find(offset, limit);
 }

@@ -5,7 +5,6 @@ export const gifs = new PersistentUnorderedMap<u32, Gif>("todos");
 @nearBindgen
 export class PartialGif {
     gifLink: string;
-    vote: u32;
 }
 
 @nearBindgen
@@ -30,6 +29,18 @@ export class Gif {
         return gifs.getSome(id);
     }
 
+    static upVote(id: u32): void {
+        const gif = Gif.findById(id);
+        gif.vote += 1;
+        gifs.set(id, gif);
+    }
+
+    static downVote(id: u32): void {
+        const gif = Gif.findById(id);
+        gif.vote = <u32>Math.max(0, gif.vote - 1);
+        gifs.set(id, gif);
+    }
+
     static find(offset: u32, limit: u32): Gif[] {
         return gifs.values(offset, offset + limit);
     }
@@ -38,7 +49,7 @@ export class Gif {
         const gif = this.findById(id);
 
         gif.gifLink = partial.gifLink;
-        gif.vote = partial.vote;
+        gif.vote = 0;
         gifs.set(id, gif);
         return gif;
     }
