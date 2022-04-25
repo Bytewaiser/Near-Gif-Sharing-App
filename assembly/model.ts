@@ -62,7 +62,7 @@ export class Gif {
         const toRecipient = ContractPromiseBatch.create(gif.userId);
         toRecipient.transfer(Context.attachedDeposit);
 
-        gif.vote = <u32>Math.max(0, gif.vote - 1);
+        gif.vote = gif.vote == 0 ? 0 : gif.vote - 1;
         gifs.set(id, gif);
         return `Downvoted and sent ${Context.attachedDeposit} Near from ${Context.sender} to ${gif.userId}`;
     }
@@ -84,7 +84,13 @@ export class Gif {
     static findByIdAndDelete(id: u32): string {
         const gif = this.findById(id);
         assert(gif.userId == Context.predecessor, "You are not the owner of the Gif");
+        userGifCount.set(gif.userId, userGifCount.getSome(gif.userId) - 1);
         gifs.delete(id);
         return `Deleted Gif with the id: ${id}`;
+    }
+
+    static reset(): void {
+        gifs.clear();
+        userGifCount.clear();
     }
 }
