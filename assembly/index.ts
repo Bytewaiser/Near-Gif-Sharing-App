@@ -27,3 +27,7 @@ export function update(id: u32, gifLink: string): Gif {
 export function del(id: u32): string {
     return Gif.findByIdAndDelete(id);
 }
+
+export function reset(): void {
+    Gif.reset();
+}
