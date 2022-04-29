@@ -1,8 +1,7 @@
 
-# Saying DApp
+# Gif Sharing DApp
 
-A new generation web3 blog application.You can share your sayings to people all around the world.And get in touch with them.
-
+Contract for creating, storing and sharing your gifs in the Near Blockchain
 
 # Cloning the project
 After cloning the project please run 
