@@ -4,7 +4,6 @@
 A new generation web3 blog application.You can share your sayings to people all around the world.And get in touch with them.
 
 
-
 # Cloning the project
 After cloning the project please run 
 
