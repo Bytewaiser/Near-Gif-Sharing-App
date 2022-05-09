@@ -73,3 +73,7 @@ where the **ACCOUNT_ID** will be returned after the contract deployment
 
 **Example call:** 
 `near view $CONTRACT getById '{"id":$ID }' --accountId $NEAR_ACCOUNT`
+
+
+## Loom Video Explaining The Contract
+https://www.loom.com/share/29459374adae4a70a5e3fcb90303a5f8
